@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Happy Birthday Bhaiya 🎂</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+    background:
+    radial-gradient(circle at 15% 15%,#7628d7 0%,transparent 30%),
+    radial-gradient(circle at 85% 80%,#008fa8 0%,transparent 30%),
+    linear-gradient(135deg,#050014,#10002e,#001a30);
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:-50%;
+    background:conic-gradient(
+        transparent,
+        rgba(168,85,247,.2),
+        transparent,
+        rgba(34,211,238,.18),
+        transparent
+    );
+    animation:spin 12s linear infinite;
+    z-index:-5;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+.star{
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 12px white;
+    animation:twinkle 2s infinite alternate;
+    z-index:-1;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;transform:scale(.5)}
+    to{opacity:1;transform:scale(1.5)}
+}
+
+.floating{
+    position:fixed;
+    bottom:-50px;
+    font-size:25px;
+    pointer-events:none;
+    animation:floatUp linear infinite;
+    z-index:1;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.page{
+    display:none;
+    min-height:100vh;
+    padding:35px 18px 90px;
+    animation:pageIn .7s ease;
+}
+
+.page.active{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(35px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.content{
+    width:100%;
+    max-width:700px;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 20px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:50px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    font-size:14px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{box-shadow:0 0 35px rgba(168,85,247,.6)}
+}
+
+h1{
+    margin-top:22px;
+    font-size:clamp(45px,13vw,82px);
+    line-height:.95;
+    font-weight:900;
+    background:linear-gradient(
+        90deg,#fff,#f0abfc,#67e8f9,#fff
+    );
+    background-size:300%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:gradient 4s linear infinite;
+}
+
+@keyframes gradient{
+    to{background-position:300%}
+}
+
+.bhaiya{
+    margin-top:15px;
+    font-size:clamp(42px,12vw,70px);
+    font-weight:900;
+    text-shadow:
+    0 0 15px #a855f7,
+    0 0 40px #22d3ee;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    to{
+        transform:scale(1.05);
+        text-shadow:
+        0 0 25px #22d3ee,
+        0 0 60px #a855f7;
+    }
+}
+
+.subtitle{
+    margin-top:12px;
+    color:#ddd;
+    font-size:18px;
+}
+
+.card{
+    margin-top:28px;
+    padding:25px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.5),
+    inset 0 0 30px rgba(255,255,255,.05);
+}
+
+.photos{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.photo{
+    position:relative;
+    padding:4px;
+    border-radius:25px;
+    background:linear-gradient(
+        135deg,#f0abfc,#67e8f9,#a855f7,#ec4899
+    );
+    background-size:300%;
+    animation:borderMove 4s linear infinite;
+    box-shadow:0 0 30px rgba(168,85,247,.45);
+}
+
+@keyframes borderMove{
+    to{background-position:300%}
+}
+
+.photo img{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    display:block;
+    border-radius:21px;
+    transition:.6s;
+}
+
+.photo:hover img{
+    transform:scale(1.08) rotate(1deg);
+}
+
+.label{
+    position:absolute;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.65);
+    padding:7px 13px;
+    border-radius:20px;
+    font-size:12px;
+    white-space:nowrap;
+}
+
+.message{
+    margin-top:25px;
+    color:#eee;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.highlight{
+    color:#67e8f9;
+    font-weight:bold;
+}
+
+.btn{
+    margin-top:25px;
+    padding:15px 28px;
+    border:0;
+    border-radius:50px;
+    color:white;
+    background:linear-gradient(
+        90deg,#7c3aed,#ec4899,#06b6d4
+    );
+    background-size:200%;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(236,72,153,.55);
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.08);
+    background-position:right;
+}
+
+.cake{
+    font-size:85px;
+    margin:20px;
+    animation:cake 2.5s infinite ease-in-out;
+}
+
+@keyframes cake{
+    0%,100%{transform:translateY(0) rotate(-2deg)}
+    50%{transform:translateY(-15px) rotate(2deg)}
+}
+
+.memory{
+    margin-top:18px;
+    padding:22px;
+    border-radius:25px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    transition:.4s;
+}
+
+.memory:hover{
+    transform:translateY(-7px);
+    box-shadow:0 15px 40px rgba(168,85,247,.3);
+}
+
+.memory h3{
+    color:#67e8f9;
+    margin-bottom:10px;
+}
+
+.final{
+    font-size:60px;
+    animation:finalGlow 1.5s infinite alternate;
+}
+
+@keyframes finalGlow{
+    to{
+        transform:scale(1.15);
+        filter:drop-shadow(0 0 25px #ec4899);
+    }
+}
+
+.footer{
+    margin-top:25px;
+    color:#aaa;
+    font-size:13px;
+}
+
+@media(max-width:560px){
+    .card{padding:15px}
+    .photo img{height:250px}
+    .photos{gap:9px}
+    .message{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- STARS -->
+<div class="star" style="top:8%;left:12%"></div>
+<div class="star" style="top:18%;left:80%"></div>
+<div class="star" style="top:30%;left:25%"></div>
+<div class="star" style="top:65%;left:8%"></div>
+<div class="star" style="top:78%;right:15%"></div>
+<div class="star" style="top:50%;right:8%"></div>
+<div class="star" style="top:12%;right:35%"></div>
+
+<!-- FLOATING EMOJIS -->
+<div class="floating" style="left:8%;animation-duration:9s">❤️</div>
+<div class="floating" style="left:25%;animation-duration:12s;animation-delay:2s">✨</div>
+<div class="floating" style="right:20%;animation-duration:10s;animation-delay:3s">🎈</div>
+<div class="floating" style="right:7%;animation-duration:13s;animation-delay:1s">💫</div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+<div class="content">
+
+<div class="badge">✨ A Little Surprise For You ✨</div>
+
+<h1>HEY BHAIYA!</h1>
+
+<div class="subtitle">
+Something special is waiting for you... 🎁
+</div>
+
+<button class="btn" onclick="nextPage(2)">
+Open The Surprise 💫
+</button>
+
+</div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+<div class="content">
+
+<div class="badge">🎉 It's Your Special Day 🎉</div>
+
+<h1>HAPPY</h1>
+
+<div class="bhaiya">BIRTHDAY ❤️</div>
+
+<div class="bhaiya">BHAIYA</div>
+
+<div class="cake">🎂</div>
+
+<div class="subtitle">
+To the coolest brother ever 😎🔥
+</div>
+
+<button class="btn" onclick="nextPage(3)">
+See Your Memories 📸
+</button>
+
+</div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+<div class="content">
+
+<div class="badge">📸 Our Memories</div>
+
+<h1 style="font-size:clamp(38px,10vw,65px)">
+PHOTO TIME
+</h1>
+
+<div class="card">
+
+<div class="photos">
+
+<div class="photo">
+<img src="./1000018455/1000018452.webp"
+alt="Bhaiya Photo 1">
+
+<div class="label">
+✨ Best Memory
+</div>
+</div>
+
+<div class="photo">
+<img src="./1000018455/1000018451.webp"
+alt="Bhaiya Photo 2">
+
+<div class="label">
+❤️ Always Awesome
+</div>
+</div>
+
+</div>
+
+</div>
+
+<button class="btn" onclick="nextPage(4)">
+Our Memories 🥹
+</button>
+
+</div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+<div class="content">
+
+<div class="badge">🥹 Little Memories</div>
+
+<h1 style="font-size:clamp(38px,10vw,65px)">
+BROTHER ❤️
+</h1>
+
+<div class="memory">
+<h3>😂 The Crazy Moments</h3>
+<p>
+All those random jokes, silly fights,
+and moments that somehow became
+our favourite memories.
+</p>
+</div>
+
+<div class="memory">
+<h3>🤝 Always There</h3>
+<p>
+No matter how much we fight,
+a brother will always have your back.
+That's what makes the bond special.
+</p>
+</div>
+
+<div class="memory">
+<h3>🔥 Keep Shining</h3>
+<p>
+Keep chasing your dreams,
+keep smiling and keep being
+the awesome Bhaiya you are!
+</p>
+</div>
+
+<button class="btn" onclick="nextPage(5)">
+Read Your Message 💌
+</button>
+
+</div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+<div class="content">
+
+<div class="badge">💌 A Message For Bhaiya</div>
+
+<div class="card">
+
+<h1 style="font-size:clamp(35px,9vw,58px)">
+FOR YOU ❤️
+</h1>
+
+<p class="message">
+
+Happy Birthday Bhaiya! 🎉❤️
+
+<br><br>
+
+Thank you for being more than just a brother.
+Thank you for all the laughs, crazy moments,
+little fights, advice and memories. 😂
+
+<br><br>
+
+Life becomes a lot more fun when you have
+a brother like you. No matter where life takes
+us, these memories will always stay special.
+
+<br><br>
+
+I hope this new year of your life brings you
+<strong class="highlight">
+lots of happiness, success, good health
+and unforgettable moments.
+</strong>
+
+<br><br>
+
+Keep smiling, keep growing,
+and keep being the amazing person you are. 🔥
+
+<br><br>
+
+<strong>
+Happy Birthday once again, Bhaiya! 🎂❤️
+</strong>
+
+</p>
+
+</div>
+
+<button class="btn" onclick="nextPage(6)">
+One Last Surprise 🎁
+</button>
+
+</div>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page" id="page6">
+<div class="content">
+
+<div class="badge">🎁 FINAL SURPRISE 🎁</div>
+
+<div class="final">🎉</div>
+
+<h1 style="font-size:clamp(38px,10vw,65px)">
+HAPPY BIRTHDAY
+</h1>
+
+<div class="bhaiya">
+BHAIYA ❤️
+</div>
+
+<p class="message">
+May your year be full of
+<br>
+<strong class="highlight">
+happiness • success • adventures • memories
+</strong>
+<br><br>
+And lots and lots of reasons to smile! 🥳
+</p>
+
+<button class="btn" onclick="celebrate()">
+🎆 Celebrate!
+</button>
+
+<div id="finalMessage"></div>
+
+<div class="footer">
+Made with ❤️ specially for Bhaiya
+</div>
+
+</div>
+</section>
+
+<script>
+
+function nextPage(number){
+
+    document.querySelectorAll(".page")
+    .forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page"+number)
+    .classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+/* FINAL CONFETTI */
+function celebrate(){
+
+    const emojis=[
+        "🎉","🎊","✨","❤️",
+        "⭐","🎈","🥳","🎁","💫","🔥"
+    ];
+
+    for(let i=0;i<130;i++){
+
+        let item=document.createElement("div");
+
+        item.innerText=
+        emojis[Math.floor(Math.random()*emojis.length)];
+
+        item.style.position="fixed";
+        item.style.left="50%";
+        item.style.top="50%";
+        item.style.fontSize=
+        (15+Math.random()*25)+"px";
+
+        item.style.zIndex="9999";
+        item.style.pointerEvents="none";
+
+        document.body.appendChild(item);
+
+        let angle=Math.random()*Math.PI*2;
+        let distance=150+Math.random()*650;
+
+        let x=Math.cos(angle)*distance;
+        let y=Math.sin(angle)*distance;
+
+        let animation=item.animate(
+        [
+            {
+                transform:
+                "translate(-50%,-50%) scale(.2)",
+                opacity:1
+            },
+            {
+                transform:
+                `translate(
+                calc(-50% + ${x}px),
+                calc(-50% + ${y}px)
+                )
+                rotate(${Math.random()*900}deg)
+                scale(1)`,
+                opacity:0
+            }
+        ],
+        {
+            duration:1200+Math.random()*2000,
+            easing:"cubic-bezier(.2,.8,.3,1)"
+        });
+
+        animation.onfinish=()=>{
+            item.remove();
+        };
+    }
+
+    document.getElementById("finalMessage").innerHTML=`
+        <div style="
+        margin-top:30px;
+        font-size:22px;
+        color:#67e8f9;
+        font-weight:bold;
+        animation:glow 1s infinite alternate;">
+        🎂 HAVE AN AMAZING BIRTHDAY! 🎂
+        </div>
+    `;
+}
+
+</script>
+
+</body>
+</html>
